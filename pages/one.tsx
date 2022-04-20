@@ -15,11 +15,18 @@ const one = () => {
       0.1,
       1000
     )
+    camera.position.set(0, 0, 500)
 
     // レンダラーの追加
     renderer = new THREE.WebGLRenderer({ alpha: true })
     renderer.setSize(window.innerWidth, window.innerHeight)
     document.body.appendChild(renderer.domElement)
+
+    // ジオメトリを追加
+    let ballGeometry = new THREE.SphereGeometry(100, 64, 32)
+
+    // マテリアルを追加
+    let ballMaterial = new THREE.MeshPhysicalMaterial()
   }, [])
 
   return (
