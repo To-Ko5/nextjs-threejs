@@ -31,6 +31,9 @@ const one = () => {
     // メッシュ化
     let ballMesh = new THREE.Mesh(ballGeometry, ballMaterial)
     scene.add(ballMesh)
+
+    // レンダリング
+    renderer.render(scene, camera)
   }, [])
 
   return (
