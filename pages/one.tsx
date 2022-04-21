@@ -3,7 +3,10 @@ import * as THREE from 'three'
 
 const one = () => {
   useEffect(() => {
-    let scene, camera, renderer, pointLight
+    let scene: THREE.Object3D<THREE.Event> | THREE.Scene,
+      camera: THREE.PerspectiveCamera | THREE.Camera,
+      renderer: THREE.WebGLRenderer,
+      pointLight: THREE.Object3D<THREE.Event> | THREE.PointLight
 
     // シーンの追加
     scene = new THREE.Scene()
@@ -46,8 +49,20 @@ const one = () => {
     let pointLightHelper = new THREE.PointLightHelper(pointLight, 50)
     scene.add(pointLightHelper)
 
-    // レンダリング
-    renderer.render(scene, camera)
+    // ポイント光源を周回させる動きを付ける
+    function animate() {
+      pointLight.position.set(
+        200 * Math.sin(Date.now() / 500),
+        200 * Math.sin(Date.now() / 1000),
+        200 * Math.cos(Date.now() / 500)
+      )
+
+      // レンダリング
+      renderer.render(scene, camera)
+      requestAnimationFrame(animate)
+    }
+
+    animate()
   }, [])
 
   return (
