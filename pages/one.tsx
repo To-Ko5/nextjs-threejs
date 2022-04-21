@@ -15,7 +15,7 @@ const one = () => {
       0.1,
       1000
     )
-    camera.position.set(0, 0, 500)
+    camera.position.set(0, 0, +500)
 
     // レンダラーの追加
     renderer = new THREE.WebGLRenderer({ alpha: true })
@@ -31,6 +31,11 @@ const one = () => {
     // メッシュ化
     let ballMesh = new THREE.Mesh(ballGeometry, ballMaterial)
     scene.add(ballMesh)
+
+    // 平行光源を追加
+    let directionalLight = new THREE.DirectionalLight(0xffffff, 2)
+    directionalLight.position.set(1, 1, 1)
+    scene.add(directionalLight)
 
     // レンダリング
     renderer.render(scene, camera)
