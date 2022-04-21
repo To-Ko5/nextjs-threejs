@@ -42,6 +42,10 @@ const one = () => {
     pointLight.position.set(-200, -200, -200)
     scene.add(pointLight)
 
+    // ポイント光源の場所の特定(ヘルパー)
+    let pointLightHelper = new THREE.PointLightHelper(pointLight, 50)
+    scene.add(pointLightHelper)
+
     // レンダリング
     renderer.render(scene, camera)
   }, [])
