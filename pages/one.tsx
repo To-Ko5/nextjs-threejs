@@ -27,11 +27,16 @@ const one = () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
     document.body.appendChild(renderer.domElement)
 
+    // テクスチャーを追加
+    let textures = new THREE.TextureLoader().load(
+      'https://source.unsplash.com/random/'
+    )
+
     // ジオメトリを追加
     let ballGeometry = new THREE.SphereGeometry(100, 64, 32)
 
     // マテリアルを追加
-    let ballMaterial = new THREE.MeshPhysicalMaterial()
+    let ballMaterial = new THREE.MeshPhysicalMaterial({ map: textures })
 
     // メッシュ化
     let ballMesh = new THREE.Mesh(ballGeometry, ballMaterial)
