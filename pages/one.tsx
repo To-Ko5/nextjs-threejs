@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
 import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 const one = () => {
   useEffect(() => {
     let scene: THREE.Object3D<THREE.Event> | THREE.Scene,
       camera: THREE.PerspectiveCamera | THREE.Camera,
       renderer: THREE.WebGLRenderer,
-      pointLight: THREE.Object3D<THREE.Event> | THREE.PointLight
+      pointLight: THREE.Object3D<THREE.Event> | THREE.PointLight,
+      controls
 
     // シーンの追加
     scene = new THREE.Scene()
@@ -48,6 +50,9 @@ const one = () => {
     // ポイント光源の場所の特定(ヘルパー)
     let pointLightHelper = new THREE.PointLightHelper(pointLight, 50)
     scene.add(pointLightHelper)
+
+    // マウス操作を追加
+    controls = new OrbitControls(camera, renderer.domElement)
 
     // ポイント光源を周回させる動きを付ける
     function animate() {
