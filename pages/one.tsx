@@ -10,55 +10,61 @@ const one = () => {
       pointLight: THREE.Object3D<THREE.Event> | THREE.PointLight,
       controls
 
-    // シーンの追加
-    scene = new THREE.Scene()
+    window.addEventListener('load', init)
 
-    // カメラの追加
-    camera = new THREE.PerspectiveCamera(
-      50,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    )
-    camera.position.set(0, 0, +500)
+    function init() {
+      // シーンの追加
+      scene = new THREE.Scene()
 
-    // レンダラーの追加
-    renderer = new THREE.WebGLRenderer({ alpha: true })
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setPixelRatio(window.devicePixelRatio)
-    document.body.appendChild(renderer.domElement)
+      // カメラの追加
+      camera = new THREE.PerspectiveCamera(
+        50,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      )
+      camera.position.set(0, 0, +500)
 
-    // テクスチャーを追加
-    let textures = new THREE.TextureLoader().load(
-      'https://source.unsplash.com/random/'
-    )
+      // レンダラーの追加
+      renderer = new THREE.WebGLRenderer({ alpha: true })
+      renderer.setSize(window.innerWidth, window.innerHeight)
+      renderer.setPixelRatio(window.devicePixelRatio)
+      document.body.appendChild(renderer.domElement)
 
-    // ジオメトリを追加
-    let ballGeometry = new THREE.SphereGeometry(100, 64, 32)
+      // テクスチャーを追加
+      let textures = new THREE.TextureLoader().load(
+        'https://source.unsplash.com/random/'
+      )
 
-    // マテリアルを追加
-    let ballMaterial = new THREE.MeshPhysicalMaterial({ map: textures })
+      // ジオメトリを追加
+      let ballGeometry = new THREE.SphereGeometry(100, 64, 32)
 
-    // メッシュ化
-    let ballMesh = new THREE.Mesh(ballGeometry, ballMaterial)
-    scene.add(ballMesh)
+      // マテリアルを追加
+      let ballMaterial = new THREE.MeshPhysicalMaterial({ map: textures })
 
-    // 平行光源を追加
-    let directionalLight = new THREE.DirectionalLight(0xffffff, 2)
-    directionalLight.position.set(1, 1, 1)
-    scene.add(directionalLight)
+      // メッシュ化
+      let ballMesh = new THREE.Mesh(ballGeometry, ballMaterial)
+      scene.add(ballMesh)
 
-    // ポイント光源を追加
-    pointLight = new THREE.PointLight(0xffffff, 2)
-    pointLight.position.set(-200, -200, -200)
-    scene.add(pointLight)
+      // 平行光源を追加
+      let directionalLight = new THREE.DirectionalLight(0xffffff, 2)
+      directionalLight.position.set(1, 1, 1)
+      scene.add(directionalLight)
 
-    // ポイント光源の場所の特定(ヘルパー)
-    let pointLightHelper = new THREE.PointLightHelper(pointLight, 50)
-    scene.add(pointLightHelper)
+      // ポイント光源を追加
+      pointLight = new THREE.PointLight(0xffffff, 2)
+      pointLight.position.set(-200, -200, -200)
+      scene.add(pointLight)
 
-    // マウス操作を追加
-    controls = new OrbitControls(camera, renderer.domElement)
+      // ポイント光源の場所の特定(ヘルパー)
+      let pointLightHelper = new THREE.PointLightHelper(pointLight, 50)
+      scene.add(pointLightHelper)
+
+      // マウス操作を追加
+      controls = new OrbitControls(camera, renderer.domElement)
+
+      animate()
+    }
 
     // ポイント光源を周回させる動きを付ける
     function animate() {
@@ -72,8 +78,6 @@ const one = () => {
       renderer.render(scene, camera)
       requestAnimationFrame(animate)
     }
-
-    animate()
   }, [])
 
   return (
