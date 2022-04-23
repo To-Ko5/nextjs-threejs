@@ -25,6 +25,7 @@ const one = () => {
     // レンダラーの追加
     renderer = new THREE.WebGLRenderer({ alpha: true })
     renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setPixelRatio(window.devicePixelRatio)
     document.body.appendChild(renderer.domElement)
 
     // テクスチャーを追加
