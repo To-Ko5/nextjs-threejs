@@ -5,7 +5,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 const one = () => {
   useEffect(() => {
     let scene: THREE.Object3D<THREE.Event> | THREE.Scene,
-      camera: THREE.PerspectiveCamera | THREE.Camera,
+      camera: THREE.PerspectiveCamera | THREE.Camera | THREE.CubeCamera,
       renderer: THREE.WebGLRenderer,
       pointLight: THREE.Object3D<THREE.Event> | THREE.PointLight,
       controls
@@ -63,7 +63,18 @@ const one = () => {
       // マウス操作を追加
       controls = new OrbitControls(camera, renderer.domElement)
 
+      window.addEventListener('resize', onWindowResize)
       animate()
+    }
+
+    // ブラウザのリサイズに対応
+    function onWindowResize() {
+      // サイズを随時更新する
+      renderer.setSize(window.innerWidth, window.innerHeight)
+
+      // カメラのアスペクト比を随時合わせる
+      camera.aspect = window.innerWidth / window.innerHeight
+      camera.updateProjectionMatrix()
     }
 
     // ポイント光源を周回させる動きを付ける
