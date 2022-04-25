@@ -24,13 +24,16 @@ const geometry = () => {
 
     // ジオメトリ
     const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
+    const sphereGeometry = new THREE.SphereGeometry(0.3, 32, 16)
 
     //マテリアル
     const material = new THREE.MeshNormalMaterial()
 
     // メッシュ
     const box = new THREE.Mesh(boxGeometry, material)
-    scene.add(box)
+    const sphere = new THREE.Mesh(sphereGeometry, material)
+    sphere.position.x = 1
+    scene.add(box, sphere)
 
     //ライト
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
