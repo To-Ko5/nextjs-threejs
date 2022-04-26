@@ -23,9 +23,15 @@ const geometry = () => {
     document.body.appendChild(renderer.domElement)
 
     // ジオメトリ
+
+    // 直方体
     const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
+    // 球体
     const sphereGeometry = new THREE.SphereGeometry(0.3, 32, 16)
+    // 平面
     const planeGeometry = new THREE.PlaneGeometry()
+    // 地面
+    const planeGeometryGround = new THREE.PlaneGeometry(10, 10)
 
     //マテリアル
     const material = new THREE.MeshNormalMaterial()
@@ -34,9 +40,12 @@ const geometry = () => {
     const box = new THREE.Mesh(boxGeometry, material)
     const sphere = new THREE.Mesh(sphereGeometry, material)
     const plane = new THREE.Mesh(planeGeometry, material)
+    const planeGround = new THREE.Mesh(planeGeometryGround, material)
     sphere.position.x = 1
     plane.position.x = -1
-    scene.add(box, sphere, plane)
+    planeGround.rotation.x = -Math.PI * 0.5
+    planeGround.position.y = -0.5
+    scene.add(box, sphere, plane, planeGround)
 
     //ライト
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
