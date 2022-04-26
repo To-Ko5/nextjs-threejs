@@ -25,6 +25,7 @@ const geometry = () => {
     // ジオメトリ
     const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
     const sphereGeometry = new THREE.SphereGeometry(0.3, 32, 16)
+    const planeGeometry = new THREE.PlaneGeometry()
 
     //マテリアル
     const material = new THREE.MeshNormalMaterial()
@@ -32,8 +33,10 @@ const geometry = () => {
     // メッシュ
     const box = new THREE.Mesh(boxGeometry, material)
     const sphere = new THREE.Mesh(sphereGeometry, material)
+    const plane = new THREE.Mesh(planeGeometry, material)
     sphere.position.x = 1
-    scene.add(box, sphere)
+    plane.position.x = -1
+    scene.add(box, sphere, plane)
 
     //ライト
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
