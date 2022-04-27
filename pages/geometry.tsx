@@ -32,6 +32,8 @@ const geometry = () => {
     const planeGeometry = new THREE.PlaneGeometry()
     // 地面
     const planeGeometryGround = new THREE.PlaneGeometry(10, 10)
+    // ドーナツ型
+    const torusGeometry = new THREE.TorusGeometry(0.5, 0.2)
 
     //マテリアル
     const material = new THREE.MeshNormalMaterial()
@@ -41,11 +43,14 @@ const geometry = () => {
     const sphere = new THREE.Mesh(sphereGeometry, material)
     const plane = new THREE.Mesh(planeGeometry, material)
     const planeGround = new THREE.Mesh(planeGeometryGround, material)
+    const torus = new THREE.Mesh(torusGeometry, material)
     sphere.position.x = 1
     plane.position.x = -1
     planeGround.rotation.x = -Math.PI * 0.5
     planeGround.position.y = -0.5
-    scene.add(box, sphere, plane, planeGround)
+    torus.position.x = -3
+    torus.position.y = 1
+    scene.add(box, sphere, plane, planeGround, torus)
 
     //ライト
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
