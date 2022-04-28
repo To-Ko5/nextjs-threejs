@@ -35,6 +35,24 @@ const geometry = () => {
     // ドーナツ型
     const torusGeometry = new THREE.TorusGeometry(0.5, 0.2)
 
+    // バッファジオメトリ
+    const bufferGeometry = new THREE.BufferGeometry()
+    const positionArray = new Float32Array(9)
+    positionArray[0] = 0
+    positionArray[1] = 0
+    positionArray[2] = 0
+    positionArray[3] = 0
+    positionArray[4] = 1
+    positionArray[5] = 0
+    positionArray[6] = 1
+    positionArray[7] = 0
+    positionArray[8] = 0
+    const positionAttribute = new THREE.BufferAttribute(positionArray, 3)
+    bufferGeometry.setAttribute('position', positionAttribute)
+    const basicMaterial = new THREE.MeshBasicMaterial()
+    const buffer = new THREE.Mesh(bufferGeometry, basicMaterial)
+    scene.add(buffer)
+
     //マテリアル
     const material = new THREE.MeshNormalMaterial()
 
@@ -50,7 +68,7 @@ const geometry = () => {
     planeGround.position.y = -0.5
     torus.position.x = -3
     torus.position.y = 1
-    scene.add(box, sphere, plane, planeGround, torus)
+    // scene.add(box, sphere, plane, planeGround, torus)
 
     //ライト
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
