@@ -45,6 +45,7 @@ const uiDebug = () => {
     gui.add(box.position, 'y').min(-3).max(3).step(0.01)
     gui.add(box.position, 'z').min(-3).max(3).step(0.01)
     gui.add(box.rotation, 'x').min(-3).max(3).step(0.01).name('rotaitonX')
+    gui.add(box, 'visible')
 
     // ライト
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
