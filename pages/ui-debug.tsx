@@ -9,7 +9,6 @@ const uiDebug = () => {
      * UIデバッグ
      */
     const gui = new GUI()
-    console.log(gui)
 
     // シーン
     const scene = new THREE.Scene()
@@ -40,6 +39,12 @@ const uiDebug = () => {
     // メッシュ化
     const box = new THREE.Mesh(boxGeometry, material)
     scene.add(box)
+
+    // デバッグ
+    gui.add(box.position, 'x').min(-3).max(3).step(0.01)
+    gui.add(box.position, 'y').min(-3).max(3).step(0.01)
+    gui.add(box.position, 'z').min(-3).max(3).step(0.01)
+    gui.add(box.rotation, 'x').min(-3).max(3).step(0.01).name('rotaitonX')
 
     // ライト
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
