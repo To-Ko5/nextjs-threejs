@@ -60,6 +60,9 @@ const meshMaterial = () => {
         color: 'red',
         map: textures
       })
+      // material.wireframe = true
+      // 裏側を描写する
+      material.side = THREE.DoubleSide
 
       // メッシュ化
       sphere = new THREE.Mesh(sphereGeometry, material)
