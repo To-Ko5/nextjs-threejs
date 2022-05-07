@@ -61,8 +61,12 @@ const meshMaterial = () => {
         map: textures
       })
       // material.wireframe = true
+
       // 裏側を描写する
       material.side = THREE.DoubleSide
+      // 透過する
+      material.opacity = 0.5
+      material.transparent = true
 
       // メッシュ化
       sphere = new THREE.Mesh(sphereGeometry, material)
