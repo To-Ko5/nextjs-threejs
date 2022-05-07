@@ -50,9 +50,15 @@ const meshMaterial = () => {
       const planeGeometry = new THREE.PlaneGeometry(1, 1)
       const octahedronGeometry = new THREE.OctahedronGeometry(0.5)
 
+      // テクスチャ
+      let textures = new THREE.TextureLoader().load(
+        'https://source.unsplash.com/random/'
+      )
+
       // マテリアル
       const material = new THREE.MeshBasicMaterial({
-        color: 'red'
+        color: 'red',
+        map: textures
       })
 
       // メッシュ化
