@@ -10,9 +10,15 @@ const meshMaterial = () => {
       renderer: THREE.WebGLRenderer,
       pointLight,
       controls,
-      sphere,
-      plane,
-      octahedron
+      sphere:
+        | THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>
+        | THREE.Object3D<THREE.Event>,
+      plane:
+        | THREE.Object3D<THREE.Event>
+        | THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>,
+      octahedron:
+        | THREE.Mesh<THREE.OctahedronGeometry, THREE.MeshBasicMaterial>
+        | THREE.Object3D<THREE.Event>
 
     window.addEventListener('load', init)
 
@@ -64,7 +70,20 @@ const meshMaterial = () => {
       animate()
     }
 
+    const clock = new THREE.Clock()
+
     function animate() {
+      const elapsedTime = clock.getElapsedTime()
+
+      // オブジェクトを回転させる
+      sphere.rotation.x = elapsedTime
+      plane.rotation.x = elapsedTime
+      octahedron.rotation.x = elapsedTime
+
+      sphere.rotation.y = elapsedTime
+      plane.rotation.y = elapsedTime
+      octahedron.rotation.y = elapsedTime
+
       // レンダリング
       renderer.render(scene, camera)
       requestAnimationFrame(animate)
