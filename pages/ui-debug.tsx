@@ -41,13 +41,20 @@ const uiDebug = () => {
     scene.add(box)
 
     // デバッグ
-    gui.add(box.position, 'x').min(-3).max(3).step(0.01)
-    gui.add(box.position, 'y').min(-3).max(3).step(0.01)
-    gui.add(box.position, 'z').min(-3).max(3).step(0.01)
-    gui.add(box.rotation, 'x').min(-3).max(3).step(0.01).name('rotaitonX')
+    const positionFloder = gui.addFolder('position')
+    const colorFloder = gui.addFolder('color')
+    positionFloder.add(box.position, 'x').min(-3).max(3).step(0.01)
+    positionFloder.add(box.position, 'y').min(-3).max(3).step(0.01)
+    positionFloder.add(box.position, 'z').min(-3).max(3).step(0.01)
+    positionFloder
+      .add(box.rotation, 'x')
+      .min(-3)
+      .max(3)
+      .step(0.01)
+      .name('rotaitonX')
     gui.add(box, 'visible')
     gui.add(material, 'wireframe')
-    gui.addColor(material, 'color')
+    colorFloder.addColor(material, 'color')
 
     // ライト
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
