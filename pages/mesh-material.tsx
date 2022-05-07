@@ -51,7 +51,9 @@ const meshMaterial = () => {
       const octahedronGeometry = new THREE.OctahedronGeometry(0.5)
 
       // マテリアル
-      const material = new THREE.MeshBasicMaterial()
+      const material = new THREE.MeshBasicMaterial({
+        color: 'red'
+      })
 
       // メッシュ化
       sphere = new THREE.Mesh(sphereGeometry, material)
@@ -85,6 +87,7 @@ const meshMaterial = () => {
       octahedron.rotation.y = elapsedTime
 
       // レンダリング
+      renderer.setClearColor(0x000000, 0)
       renderer.render(scene, camera)
       requestAnimationFrame(animate)
     }
