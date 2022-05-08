@@ -56,22 +56,29 @@ const meshMaterial = () => {
       )
 
       // マテリアル
-      const material = new THREE.MeshBasicMaterial({
-        color: 'red',
-        map: textures
-      })
-      // material.wireframe = true
+      // const material = new THREE.MeshBasicMaterial({
+      //   color: 'red',
+      //   map: textures
+      // })
+      // // material.wireframe = true
 
-      // 裏側を描写する
-      material.side = THREE.DoubleSide
-      // 透過する
-      material.opacity = 0.5
-      material.transparent = true
+      // // 裏側を描写する
+      // material.side = THREE.DoubleSide
+      // // 透過する
+      // material.opacity = 0.5
+      // material.transparent = true
 
       // マテリアル（MeshNormalMaterial）
       // const material = new THREE.MeshNormalMaterial()
       // material.flatShading = true
       // material.side = THREE.DoubleSide
+
+      // マテリアル（MeshStandardMaterialは明かりが無いと表示されない）
+      const material = new THREE.MeshStandardMaterial({ color: '#049ef4' })
+      material.roughness = 0.4
+      material.metalness = 0.55
+      material.flatShading = true
+      material.map = textures
 
       // 明かりを追加
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.7)
