@@ -74,16 +74,22 @@ const meshMaterial = () => {
       // material.side = THREE.DoubleSide
 
       // マテリアル（MeshStandardMaterialは明かりが無いと表示されない）
-      const material = new THREE.MeshStandardMaterial({ color: '#049ef4' })
-      material.roughness = 0.4
-      material.metalness = 0.55
-      material.flatShading = true
-      material.map = textures
+      // const material = new THREE.MeshStandardMaterial({ color: '#049ef4' })
+      // material.roughness = 0.4
+      // material.metalness = 0.55
+      // material.flatShading = true
+      // material.map = textures
+
+      // マテリアル（MeshPhongMaterialは明かりが無いと表示されない, 明かりの反射の色を変える）
+      const material = new THREE.MeshPhongMaterial()
+      material.shininess = 100
+      material.specular = new THREE.Color('blue')
+      // material.map = textures
 
       // 明かりを追加
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.7)
       scene.add(ambientLight)
-      const pointLight = new THREE.PointLight(0xffffff, 1)
+      const pointLight = new THREE.PointLight(0xffffff, 0.2)
       pointLight.position.set(1, 2, 3)
       scene.add(pointLight)
       const pointLightHelper = new THREE.PointLightHelper(pointLight, 1)
