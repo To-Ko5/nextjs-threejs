@@ -31,7 +31,7 @@ const meshMaterial = () => {
         75,
         window.innerWidth / window.innerHeight,
         0.1,
-        100
+        1000
       )
       camera.position.set(1, 1, 2)
 
@@ -84,7 +84,8 @@ const meshMaterial = () => {
       const material = new THREE.MeshPhongMaterial()
       material.shininess = 100
       material.specular = new THREE.Color('blue')
-      // material.map = textures
+      material.side = THREE.DoubleSide
+      material.map = textures
 
       // 明かりを追加
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.7)
