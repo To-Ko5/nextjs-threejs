@@ -32,6 +32,21 @@ const particle = () => {
     renderer.setPixelRatio(window.devicePixelRatio)
     document.body.appendChild(renderer.domElement)
 
+    // テクスチャ
+
+    // パーティクル
+    const particlesGeometry = new THREE.SphereGeometry(1, 16, 32)
+
+    // マテリアル
+    const pointMaterial = new THREE.PointsMaterial({
+      size: 0.01,
+      sizeAttenuation: true // cameraが近づいた時のサイズを変えるか
+    })
+
+    // メッシュ化
+    const particles = new THREE.Points(particlesGeometry, pointMaterial)
+    scene.add(particles)
+
     // マウス操作
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.enableDamping = true
