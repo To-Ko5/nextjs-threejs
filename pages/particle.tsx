@@ -40,7 +40,7 @@ const particle = () => {
     // 3つの座標があるので3を掛ける
     const positionArray = new Float32Array(count * 3)
     for (let i = 0; i < count * 3; i++) {
-      positionArray[i] = Math.random()
+      positionArray[i] = (Math.random() - 0.5) * 10
     }
     particlesGeometry.setAttribute(
       'position',
@@ -49,7 +49,7 @@ const particle = () => {
 
     // マテリアル
     const pointMaterial = new THREE.PointsMaterial({
-      size: 0.01,
+      size: 0.03,
       sizeAttenuation: true // cameraが近づいた時のサイズを変えるか
     })
 
