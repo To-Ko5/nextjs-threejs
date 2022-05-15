@@ -56,8 +56,9 @@ const particle = () => {
       sizeAttenuation: true, // cameraが近づいた時のサイズを変えるか
       transparent: true,
       alphaMap: textures,
-      alphaTest: 0.01,
-      depthTest: false // 深度のテスト
+      // alphaTest: 0.01,
+      depthTest: true, // 深度のテスト
+      depthWrite: false
     })
 
     // メッシュ化
