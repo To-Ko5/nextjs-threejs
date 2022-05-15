@@ -33,6 +33,9 @@ const particle = () => {
     document.body.appendChild(renderer.domElement)
 
     // テクスチャ
+    let textures = new THREE.TextureLoader().load(
+      'https://source.unsplash.com/random/'
+    )
 
     // パーティクル
     const particlesGeometry = new THREE.BufferGeometry()
@@ -49,9 +52,10 @@ const particle = () => {
 
     // マテリアル
     const pointMaterial = new THREE.PointsMaterial({
-      size: 0.03,
+      size: 0.5,
       sizeAttenuation: true // cameraが近づいた時のサイズを変えるか
     })
+    pointMaterial.map = textures
 
     // メッシュ化
     const particles = new THREE.Points(particlesGeometry, pointMaterial)
