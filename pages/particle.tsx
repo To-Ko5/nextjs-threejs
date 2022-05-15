@@ -53,9 +53,11 @@ const particle = () => {
     // マテリアル
     const pointMaterial = new THREE.PointsMaterial({
       size: 0.5,
-      sizeAttenuation: true // cameraが近づいた時のサイズを変えるか
+      sizeAttenuation: true, // cameraが近づいた時のサイズを変えるか
+      transparent: true,
+      alphaMap: textures,
+      alphaTest: 0.01
     })
-    pointMaterial.map = textures
 
     // メッシュ化
     const particles = new THREE.Points(particlesGeometry, pointMaterial)
