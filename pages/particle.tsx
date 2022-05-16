@@ -88,6 +88,16 @@ const particle = () => {
 
       controls.update()
 
+      for (let i = 0; i < count; i++) {
+        const i3 = i * 3
+
+        const x = particlesGeometry.attributes.position.array[i3 + 0]
+        particlesGeometry.attributes.position.array[i3 + 1] = Math.sin(
+          elapsedTime + x
+        )
+      }
+      particlesGeometry.attributes.position.needsUpdate = true
+
       // レンダリング
       renderer.render(scene, camera)
       requestAnimationFrame(animate)
