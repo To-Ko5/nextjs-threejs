@@ -58,7 +58,8 @@ const particle = () => {
       alphaMap: textures,
       // alphaTest: 0.01,
       depthTest: true, // 深度のテスト
-      depthWrite: false
+      depthWrite: false,
+      color: 'red' // colorをつける
     })
 
     // メッシュ化
