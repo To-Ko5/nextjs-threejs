@@ -42,12 +42,20 @@ const particle = () => {
     const count = 100
     // 3つの座標があるので3を掛ける
     const positionArray = new Float32Array(count * 3)
+    // colorの設定
+    const colorArray = new Float32Array(count * 3)
     for (let i = 0; i < count * 3; i++) {
       positionArray[i] = (Math.random() - 0.5) * 10
+      colorArray[i] = Math.random()
     }
     particlesGeometry.setAttribute(
       'position',
       new THREE.BufferAttribute(positionArray, 3)
+    )
+
+    particlesGeometry.setAttribute(
+      'color',
+      new THREE.BufferAttribute(colorArray, 3)
     )
 
     // マテリアル
@@ -59,7 +67,8 @@ const particle = () => {
       // alphaTest: 0.01,
       depthTest: true, // 深度のテスト
       depthWrite: false,
-      color: 'red' // colorをつける
+      // color: 'red' colorをつける
+      vertexColors: true
     })
 
     // メッシュ化
