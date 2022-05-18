@@ -11,6 +11,20 @@ const lp = () => {
         <title>Three.js LP</title>
         <meta name="description" content="Three.js demo site" />
       </Head>
+
+      <canvas className="webgl"></canvas>
+
+      <main className="main">
+        <div className="content">
+          <h1>Title</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+            dolore debitis voluptas
+          </p>
+
+          <button>Button</button>
+        </div>
+      </main>
     </>
   )
 }
