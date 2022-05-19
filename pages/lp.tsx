@@ -4,6 +4,8 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import GUI from 'lil-gui'
 
+import LpStyle from '../styles/Lp.module.css'
+
 const lp = () => {
   return (
     <>
@@ -12,10 +14,10 @@ const lp = () => {
         <meta name="description" content="Three.js demo site" />
       </Head>
 
-      <canvas className="webgl"></canvas>
+      <canvas className={LpStyle.webgl}></canvas>
 
-      <main className="main">
-        <div className="content">
+      <main className={LpStyle.main}>
+        <div className={LpStyle.content}>
           <h1>Title</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
