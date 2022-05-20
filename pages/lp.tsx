@@ -10,7 +10,7 @@ import mitt from 'next/dist/shared/lib/mitt'
 const lp = () => {
   useEffect(() => {
     // canvasを取得
-    const canvas = document.querySelector('.webgl')
+    const canvas = document.getElementById('webGl')
 
     // シーン
     const scene = new THREE.Scene()
@@ -38,6 +38,36 @@ const lp = () => {
     })
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(window.devicePixelRatio)
+
+    // オブジェクト
+    // マテリアル
+    const material = new THREE.MeshPhysicalMaterial({
+      color: 'red',
+      metalness: 0.86,
+      roughness: 0.37,
+      flatShading: true
+    })
+
+    // メッシュ
+    const mesh1 = new THREE.Mesh(
+      new THREE.TorusGeometry(1, 0.4, 16, 60),
+      material
+    )
+    const mesh2 = new THREE.Mesh(new THREE.OctahedronGeometry(), material)
+    const mesh3 = new THREE.Mesh(
+      new THREE.TorusKnotGeometry(1, 0.4, 16, 60),
+      material
+    )
+    const mesh4 = new THREE.Mesh(new THREE.IcosahedronGeometry(), material)
+
+    // オブジェクトを配置
+    mesh1.position.set(2, 0, 0)
+    mesh2.position.set(-1, 0, 0)
+    mesh3.position.set(2, 0, -6)
+    mesh4.position.set(5, 0, 3)
+
+    scene.add(mesh1, mesh2, mesh3, mesh4)
+
     renderer.render(scene, camera)
   }, [])
 
@@ -48,7 +78,7 @@ const lp = () => {
         <meta name="description" content="Three.js demo site" />
       </Head>
 
-      <canvas className={LpStyle.webgl}></canvas>
+      <canvas id="webGl" className={LpStyle.webgl}></canvas>
 
       <main className={LpStyle.main}>
         <div className={LpStyle.content}>
