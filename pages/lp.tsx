@@ -45,7 +45,7 @@ const lp = () => {
       color: 'red',
       metalness: 0.86,
       roughness: 0.37,
-      flatShading: true
+      flatShading: false // ポリゴン化
     })
 
     // メッシュ
