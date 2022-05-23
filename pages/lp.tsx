@@ -68,6 +68,11 @@ const lp = () => {
 
     scene.add(mesh1, mesh2, mesh3, mesh4)
 
+    // ライト
+    const directionalLight = new THREE.DirectionalLight('#fafafafa', 3)
+    directionalLight.position.set(0.5, 1, 0)
+    scene.add(directionalLight)
+
     renderer.render(scene, camera)
   }, [])
 
