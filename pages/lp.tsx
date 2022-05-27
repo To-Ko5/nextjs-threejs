@@ -5,7 +5,6 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import GUI from 'lil-gui'
 
 import LpStyle from '../styles/Lp.module.css'
-import mitt from 'next/dist/shared/lib/mitt'
 
 const lp = () => {
   useEffect(() => {
