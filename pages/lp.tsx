@@ -8,6 +8,9 @@ import LpStyle from '../styles/Lp.module.css'
 
 const lp = () => {
   useEffect(() => {
+    // UIデバック
+    const gui = new GUI()
+
     // canvasを取得
     const canvas = document.getElementById('webGl')
 
@@ -46,6 +49,11 @@ const lp = () => {
       roughness: 0.37,
       flatShading: false // ポリゴン化
     })
+
+    // UIデバックを設定
+    gui.addColor(material, 'color')
+    gui.add(material, 'metalness').min(0).max(1).step(0.001)
+    gui.add(material, 'roughness').min(0).max(1).step(0.001)
 
     // メッシュ
     const mesh1 = new THREE.Mesh(
