@@ -73,7 +73,24 @@ const lp = () => {
     directionalLight.position.set(0.5, 1, 0)
     scene.add(directionalLight)
 
-    renderer.render(scene, camera)
+    // リサイズ
+    window.addEventListener('resize', () => {
+      sizes.width = window.innerWidth
+      sizes.height = window.innerHeight
+
+      camera.aspect = sizes.width / sizes.height
+      camera.updateProjectionMatrix()
+
+      renderer.setSize(sizes.width, sizes.height)
+      renderer.setPixelRatio(window.devicePixelRatio)
+    })
+
+    const animate = () => {
+      renderer.render(scene, camera)
+      window.requestAnimationFrame(animate)
+    }
+
+    animate()
   }, [])
 
   return (
