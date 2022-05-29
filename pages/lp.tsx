@@ -74,6 +74,7 @@ const lp = () => {
     mesh4.position.set(5, 0, 3)
 
     scene.add(mesh1, mesh2, mesh3, mesh4)
+    const meshes = [mesh1, mesh2, mesh3, mesh4]
 
     // ライト
     const directionalLight = new THREE.DirectionalLight('#fafafa', 3)
@@ -94,6 +95,13 @@ const lp = () => {
 
     const animate = () => {
       renderer.render(scene, camera)
+
+      // meshを回転
+      for (const mesh of meshes) {
+        mesh.rotation.x += 0.01
+        mesh.rotation.y += 0.01
+      }
+
       window.requestAnimationFrame(animate)
     }
 
