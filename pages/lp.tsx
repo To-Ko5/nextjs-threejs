@@ -93,13 +93,16 @@ const lp = () => {
       renderer.setPixelRatio(window.devicePixelRatio)
     })
 
+    const clock = new THREE.Clock()
     const animate = () => {
       renderer.render(scene, camera)
 
+      let getDeltaTime = clock.getDelta()
+
       // meshを回転
       for (const mesh of meshes) {
-        mesh.rotation.x += 0.01
-        mesh.rotation.y += 0.01
+        mesh.rotation.x += 0.1 * getDeltaTime
+        mesh.rotation.y += 0.1 * getDeltaTime
       }
 
       window.requestAnimationFrame(animate)
