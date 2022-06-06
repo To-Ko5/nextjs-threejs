@@ -47,7 +47,12 @@ const lpScroll = () => {
     const box = new THREE.Mesh(boxGeometry, boxMaterial)
     box.position.set(0, 0.5, -15)
     box.rotation.set(1, 1, 0)
-    scene.add(box)
+    const torusGeometry = new THREE.TorusGeometry(8, 2, 16, 100)
+    const torusMaterial = new THREE.MeshNormalMaterial()
+    const torus = new THREE.Mesh(torusGeometry, torusMaterial)
+    torus.position.set(0, 1, 10)
+
+    scene.add(box, torus)
 
     // アニメーション
     const tick = () => {
