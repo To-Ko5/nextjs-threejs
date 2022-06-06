@@ -124,8 +124,6 @@ const lp = () => {
       x: 0,
       y: 0
     }
-    // cursor.x = 0;
-    // cursor.y = 0
     window.addEventListener('mousemove', (event) => {
       cursor.x = event.clientX / sizes.width - 0.5
       cursor.y = event.clientY / sizes.height - 0.5
@@ -143,6 +141,10 @@ const lp = () => {
         mesh.rotation.x += 0.1 * getDeltaTime
         mesh.rotation.y += 0.1 * getDeltaTime
       }
+
+      // カメラを制御する
+      camera.position.x += cursor.x * getDeltaTime * 2
+      camera.position.y += -cursor.y * getDeltaTime * 2
 
       window.requestAnimationFrame(animate)
     }
