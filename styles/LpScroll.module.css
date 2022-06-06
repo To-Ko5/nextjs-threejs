@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;500;700&display=swap');
+
+.canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.main {
+  position: absolute;
+  width: 100vw;
+  height: 200vh;
+  z-index: 100;
+  justify-content: center;
+  text-align: center;
+  font-size: 4rem;
+  font-family: 'Roboto Slab', serif;
+  margin-top: 70px;
+}
+
+.section {
+  min-height: 100vh;
+  padding: 20px;
+  font-size: 3.5rem;
+}
