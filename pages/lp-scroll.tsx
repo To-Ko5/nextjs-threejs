@@ -14,6 +14,12 @@ const lpScroll = () => {
     // シーン
     const scene = new THREE.Scene()
 
+    // 背景を設定する
+    let textures = new THREE.TextureLoader().load(
+      'https://source.unsplash.com/random/'
+    )
+    scene.background = textures
+
     // サイズ
     const sizes = {
       width: innerWidth,
