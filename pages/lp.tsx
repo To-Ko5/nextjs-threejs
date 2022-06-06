@@ -76,6 +76,29 @@ const lp = () => {
     scene.add(mesh1, mesh2, mesh3, mesh4)
     const meshes = [mesh1, mesh2, mesh3, mesh4]
 
+    // パーティクル
+    const particlesGeometry = new THREE.BufferGeometry()
+    const particlesCount = 700
+    const positionArray = new Float32Array(particlesCount * 3)
+
+    for (let i = 0; i < particlesCount * 3; i++) {
+      positionArray[i] = Math.random() - 0.5
+    }
+    particlesGeometry.setAttribute(
+      'position',
+      new THREE.BufferAttribute(positionArray, 3)
+    )
+
+    // パーティクルマテリアル
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.025,
+      color: '#fafafa'
+    })
+
+    // パーティクルのメッシュ化
+    const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+    scene.add(particles)
+
     // ライト
     const directionalLight = new THREE.DirectionalLight('#fafafa', 3)
     directionalLight.position.set(0.5, 1, 0)
