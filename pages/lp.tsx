@@ -82,7 +82,7 @@ const lp = () => {
     const positionArray = new Float32Array(particlesCount * 3)
 
     for (let i = 0; i < particlesCount * 3; i++) {
-      positionArray[i] = Math.random() - 0.5
+      positionArray[i] = (Math.random() - 0.5) * 10
     }
     particlesGeometry.setAttribute(
       'position',
@@ -92,7 +92,7 @@ const lp = () => {
     // パーティクルマテリアル
     const particlesMaterial = new THREE.PointsMaterial({
       size: 0.025,
-      color: '#fafafa'
+      color: 'green'
     })
 
     // パーティクルのメッシュ化
