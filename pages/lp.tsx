@@ -93,6 +93,23 @@ const lp = () => {
       renderer.setPixelRatio(window.devicePixelRatio)
     })
 
+    // ホイール動作
+    let speed = 0
+    let rotation = 0
+    window.addEventListener('wheel', (event) => {
+      speed += event.deltaY * 0.0002
+      console.log(speed)
+    })
+
+    const rot = () => {
+      rotation += speed
+      speed *= 0.93
+      mesh1.position.x = rotation
+      window.requestAnimationFrame(rot)
+    }
+    rot()
+
+    // アニメーション
     const clock = new THREE.Clock()
     const animate = () => {
       renderer.render(scene, camera)
