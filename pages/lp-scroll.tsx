@@ -51,12 +51,46 @@ const lpScroll = () => {
     const torusMaterial = new THREE.MeshNormalMaterial()
     const torus = new THREE.Mesh(torusGeometry, torusMaterial)
     torus.position.set(0, 1, 10)
-
     scene.add(box, torus)
+
+    // スクロールのアニメーション
+    const animationScripts: {
+      start: number
+      end: number
+      animation: () => void
+    }[] = []
+
+    animationScripts.push({
+      start: 0,
+      end: 40,
+      animation: () => {
+        camera.lookAt(box.position)
+        camera.position.set(0, 1, 10)
+        box.position.z += 0.01
+      }
+    })
+
+    const playScrollAnimation = () => {
+      animationScripts.forEach((e) => {
+        e.animation()
+      })
+    }
+
+    // ブラウザのスクロール量を取得
+    let scroll = 0
+    document.body.onscroll = () => {
+      scroll =
+        (document.documentElement.scrollTop /
+          (document.documentElement.scrollHeight -
+            document.documentElement.clientHeight)) *
+        100
+      console.log(scroll)
+    }
 
     // アニメーション
     const tick = () => {
       window.requestAnimationFrame(tick)
+      playScrollAnimation()
       renderer.render(scene, camera)
     }
     tick()
