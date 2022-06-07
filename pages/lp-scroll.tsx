@@ -72,7 +72,9 @@ const lpScroll = () => {
 
     const playScrollAnimation = () => {
       animationScripts.forEach((e) => {
-        e.animation()
+        if (scroll >= e.start && scroll < e.end) {
+          e.animation()
+        }
       })
     }
 
