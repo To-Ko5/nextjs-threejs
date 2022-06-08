@@ -5,6 +5,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import GUI from 'lil-gui'
 
 import LpScroll from '../styles/LpScroll.module.css'
+import { start } from 'repl'
 
 const lpScroll = () => {
   useEffect(() => {
@@ -53,6 +54,15 @@ const lpScroll = () => {
     torus.position.set(0, 1, 10)
     scene.add(box, torus)
 
+    // 線形補間で動きを滑らかにする
+    const lerp = (x: number, y: number, a: number) => {
+      return (1 - a) * x + a * y
+    }
+
+    const scalePercent = (start: number, end: number) => {
+      return (scroll - start) / (end - start)
+    }
+
     // スクロールのアニメーション
     const animationScripts: {
       start: number
@@ -66,7 +76,7 @@ const lpScroll = () => {
       animation: () => {
         camera.lookAt(box.position)
         camera.position.set(0, 1, 10)
-        box.position.z += 0.01
+        box.position.z = lerp(-15, 2, scalePercent(0, 40))
       }
     })
 
