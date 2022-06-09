@@ -77,6 +77,17 @@ const lpScroll = () => {
         camera.lookAt(box.position)
         camera.position.set(0, 1, 10)
         box.position.z = lerp(-15, 2, scalePercent(0, 40))
+        torus.position.z = lerp(10, -20, scalePercent(0, 40))
+      }
+    })
+
+    animationScripts.push({
+      start: 40,
+      end: 60,
+      animation: () => {
+        camera.lookAt(box.position)
+        camera.position.set(0, 1, 10)
+        box.rotation.z = lerp(1, Math.PI, scalePercent(40, 60))
       }
     })
 
