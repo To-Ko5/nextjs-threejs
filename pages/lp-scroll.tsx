@@ -70,6 +70,7 @@ const lpScroll = () => {
       animation: () => void
     }[] = []
 
+    // 0%〜40%の時のアニメーション
     animationScripts.push({
       start: 0,
       end: 40,
@@ -81,6 +82,7 @@ const lpScroll = () => {
       }
     })
 
+    // 40%〜60%の時のアニメーション
     animationScripts.push({
       start: 40,
       end: 60,
@@ -91,9 +93,32 @@ const lpScroll = () => {
       }
     })
 
+    // 60%〜80%の時のアニメーション
+    animationScripts.push({
+      start: 60,
+      end: 80,
+      animation: () => {
+        camera.lookAt(box.position)
+        camera.position.x = lerp(0, -15, scalePercent(60, 80))
+        camera.position.y = lerp(1, 15, scalePercent(60, 80))
+        camera.position.z = lerp(10, 25, scalePercent(60, 80))
+      }
+    })
+
+    // 80%〜100%の時のアニメーション
+    animationScripts.push({
+      start: 60,
+      end: 80,
+      animation: () => {
+        camera.lookAt(box.position)
+        box.rotation.x += 0.02
+        box.rotation.y += 0.02
+      }
+    })
+
     const playScrollAnimation = () => {
       animationScripts.forEach((e) => {
-        if (scroll >= e.start && scroll < e.end) {
+        if (scroll >= e.start && scroll <= e.end) {
           e.animation()
         }
       })
